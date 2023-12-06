@@ -10,6 +10,8 @@ on:
 jobs:
   E2E_Chrome_Linux_Test:
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -28,6 +30,15 @@ jobs:
       - name: Run Tests
         continue-on-error: true
         run: mvn test -DbrowserType="chrome" -DheadlessExecution="true" -Dtest="${{ github.event.inputs.testsPath }}"
+
+      - name: Publish Report
+        # continue-on-error: true
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: Tests Report Chrome_Linux
+          path: 'target/surefire-reports/TEST-*.xml'
+          reporter: java-junit
 
   E2E_Firefox_Windows_Test:
     runs-on: windows-latest
@@ -69,17 +80,3 @@ jobs:
       - name: Run Tests on Edge
         continue-on-error: true
         run: mvn test -DbrowserType="edge" -DheadlessExecution="false"  -Dtest="${{ github.event.inputs.testsPath }}"
-
-     # - name: Publish JUnit Reports
-      #  uses: actions/upload-artifact@v2
-       # with:
-        #  name: junit-reports
-         # path: target/surefire-reports/ 
-
-        #- name: Publish Report
-        #uses: dorny/test-reporter@v1
-        #if: always()   
-        #with:
-         # name: Tests Report            
-          #path: 'target/surefire-reports/TEST-*.xml'    
-          #reporter: java-junit
