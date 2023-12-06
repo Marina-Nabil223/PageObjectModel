@@ -23,7 +23,7 @@ jobs:
 
       - name: Run Tests
         continue-on-error: true
-        run: mvn test -DbrowserType="chrome" -DheadlessExecution="true" -Dtest="tests.newUserSignUpTest"
+        run: mvn test -DbrowserType="chrome" -DheadlessExecution="true" -Dtest="${{ github.event.inputs.testsPath }}"
 
       - name: Publish Report
         uses: dorny/test-reporter@v1
