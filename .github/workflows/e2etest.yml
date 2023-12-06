@@ -25,8 +25,8 @@ jobs:
         continue-on-error: true
         run:  mvn test -DbrowserType="chrome" -DheadlessExecution="true" -Dtest="tests.newUserSignUpTest"
         
-      - name: Publish Report
+      - name: Publish JUnit Reports
         uses: actions/upload-artifact@v2
         with:
-          name: junit-test-report
-          path: target/site/surefire-report/
+          name: junit-reports
+          path: 'target/surefire-reports/' 
