@@ -23,10 +23,18 @@ jobs:
 
       - name: Run Tests
         continue-on-error: true
-        run:  mvn test -DbrowserType="chrome" -DheadlessExecution="true" -Dtest="tests.newUserSignUpTest"
-        
-      - name: Publish JUnit Reports
-        uses: actions/upload-artifact@v2
+        run: mvn test -DbrowserType="chrome" -DheadlessExecution="true" -Dtest="tests.newUserSignUpTest"
+
+      - name: Publish Report
+        uses: dorny/test-reporter@v1
+        if: always()   
         with:
-          name: junit-reports
-          path: 'target/surefire-reports/' 
+          name: Tests Report            
+          path: 'target/surefire-reports/TEST-*.xml'    
+          reporter: java-junit
+
+     # - name: Publish JUnit Reports
+      #  uses: actions/upload-artifact@v2
+       # with:
+        #  name: junit-reports
+         # path: target/surefire-reports/ 
