@@ -2,6 +2,10 @@ name: E2E Tests
 
 on:
   workflow_dispatch:
+   inputs:
+      testsPath:
+        description: 'Path to Tests to be Executed'
+        default: ''
 
 jobs:
   E2E_Test:
@@ -23,7 +27,7 @@ jobs:
 
       - name: Run Tests
         continue-on-error: true
-        run: mvn test -DbrowserType="chrome" -DheadlessExecution="true" -Dtest="${{ github.event.inputs.testsPath }}"
+        run: mvn test -DbrowserType="chrome" -DheadlessExecution="true" -Dtest="${{github.event.inputs.testsPath}}"
 
 
 
