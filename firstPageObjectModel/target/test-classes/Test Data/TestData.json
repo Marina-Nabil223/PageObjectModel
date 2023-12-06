@@ -1,0 +1,20 @@
+{
+  "testDataUserName": "Marina",
+  "testDataUserMail": "marinanabil",
+
+  "testDataUserPassword": "p@ssw@rd",
+  "testDataUserFirstName": "Marina",
+  "testDataUserLastName": "Nabil",
+
+  "testDataUserBirthDay": "21",
+  "testDataUserBirthMonth": "4",
+  "testDataUserBirthYear": "2001",
+
+  "testDataUserAddress1": "Cario",
+  "testDataUserAddress2": "none",
+  "testDataUserCountry": "United States",
+  "testDataUserState": "CA",
+  "testDataUserCity": "LA",
+  "testDataUserZipCode": "11641",
+  "testDataUserMobile": "01273226641"
+}
